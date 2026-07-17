@@ -1,5 +1,10 @@
 # Ivana Alawi — Tribute & Portfolio Site
 
+**Live site:** [https://ivanaalawi.vercel.app](https://ivanaalawi.vercel.app)
+
+> GitHub Pages (`gibsongelera.github.io/ivanaalawi`) redirects to the live Vercel site.
+> This is a Next.js app and must be hosted on Vercel (not plain GitHub Pages).
+
 A modern, responsive tribute site for Filipina actress, vlogger, and Ivana Skin
 founder Ivana Alawi. Built with Next.js (App Router), Tailwind CSS v4, and
 Framer Motion.
@@ -11,8 +16,7 @@ Framer Motion.
 - **Self-updating YouTube feed** — pulls the latest 4 vlogs from Ivana's
   channel (`UCypeLkg3Ne5-LIyiB41b1GQ`) via the YouTube Data API v3. Cached and
   revalidated hourly by Next.js.
-- **Live Instagram section** — pluggable SnapWidget / Elfsight embed with a
-  beautiful fallback grid when no widget URL is configured.
+- **Live Instagram section** — Elfsight embed showing @ivanaalawi posts.
 - **Ivana Skin showcase** — horizontal scroll-snap product line with links to
   the official store, Shopee, and Lazada.
 - **Sticky glass navbar** and full **social footer**.
@@ -68,13 +72,18 @@ lib/
   youtube.ts        # typed fetch utility
 ```
 
-## Deploy
+## Deploy (Vercel)
 
-Push the repository to GitHub and import into
-[Vercel](https://vercel.com/new). Set `YOUTUBE_API_KEY` (and optionally
-`NEXT_PUBLIC_INSTAGRAM_WIDGET_URL`) in the project's environment variables.
-Because the feed is a server component with `revalidate: 3600`, the live site
-automatically refreshes as Ivana posts new vlogs.
+The live site runs on [Vercel](https://ivanaalawi.vercel.app). Required environment variables in your Vercel project settings:
+
+| Variable | Value |
+| -------- | ----- |
+| `YOUTUBE_API_KEY` | Your Google Cloud YouTube Data API v3 key |
+| `YOUTUBE_CHANNEL_ID` | `UCypeLkg3Ne5-LIyiB41b1GQ` |
+
+After adding env vars, redeploy from the Vercel dashboard (Deployments → ⋯ → Redeploy).
+
+The vlog feed revalidates every hour (`revalidate: 3600`), so new uploads appear automatically without redeploying.
 
 ## Disclaimer
 
